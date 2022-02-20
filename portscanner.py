@@ -6,23 +6,21 @@ while True:
     alvo = input('Digite o URL do alvo: ')
     opt = input('Deseja saber o código de retorno das portas? use sim/nao como resposta. ')
 
-    if opt == 'sim':
-         for porta in portas:
-             cliente = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-             cliente.settimeout(0.2)
+    for porta in portas:
+        cliente = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        cliente.settimeout(0.2)
+        
+        if opt == 'sim':
              codigo = cliente.connect_ex((alvo, porta))
              print('porta:', porta, ' codigo:', codigo)
 
-    if opt == 'nao':
-        for porta in portas:
-            cliente = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            cliente.settimeout(0.2)
+        if opt == 'nao':
             codigo = cliente.connect_ex((alvo, porta))
             if codigo == 0:
                 print('porta:', porta, ' OPEN')
             else:
                 print('porta:', porta, ' CLOSED')
 
-    else:
-        continue;
+        else:
+            continue;
     
